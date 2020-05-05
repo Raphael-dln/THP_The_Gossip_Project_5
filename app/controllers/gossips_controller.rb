@@ -4,18 +4,11 @@ class GossipsController < ApplicationController
   end
   
   def create
-    puts "$" * 60
-    puts "ceci est le contenu de params :"
-    puts params
-    puts "$" * 60
-
-    @gossip = Gossip.new(title: params[:title], content: params[:content])
+    @gossip = Gossip.new(title: params[:title], content: params[:content],  user: User.find(params[:user]))
     if @gossip.save
-      redirect_to /gossips_path
-      puts "ca a marché"
+      redirect_to gossips_path
     else
       render 'new'
-      puts "WTF!!!!!!!!!!!!!!!!!!!!"
     end
   end
 

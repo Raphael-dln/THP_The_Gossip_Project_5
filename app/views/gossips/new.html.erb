@@ -1,4 +1,4 @@
-<header>
+<header> 
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
     <a class="navbar-brand" href="https://github.com/agnesarth/the_gossip_project_le_retour">The Gossip Project</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,17 +24,21 @@
   <div class="texte-bienvenue text-center">
     <h1>Création d'un nouveau gossip !</h1>
   </div>
-  <%= form_tag /gossips (action: 'create'), method: "post" do %>
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
 
-    <%= label_tag 'Title' %>
-    <%= text_field_tag 'params[:title]' %>
-    <br /> <br />
+  <%= label_tag 'Titre du potin' %>
+  <%= text_field_tag 'title', @gossip.title, {class: 'form-control'} %>
+  <br /> <br />
 
-    <%= label_tag 'Content' %>
-    <%= text_area_tag 'params[:content]'%>
-    <br /> <br />
+  <%= label_tag 'Le fameaux potin' %>
+  <%= text_area_tag 'content', @gossip.content, {class: 'form-control'} %>
+  <br /> <br />
 
-    <%= submit_tag "Créer un gossip" %>
-
-  <% end %>
+  <%= label_tag 'Qui es-tu ?'%>
+    <%= select_tag "user", options_from_collection_for_select(User.all, :id, :full_name), {class: 'form-control', prompt: 'Choisir un utilisateur'} %>
+  <br /> <br />
+  <%= submit_tag "Envoie le potin !" %>
+<% end %>
 </div>
+
+
