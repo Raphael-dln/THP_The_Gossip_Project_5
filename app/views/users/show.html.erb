@@ -1,2 +1,31 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
+    <a class="navbar-brand" href="https://github.com/agnesarth/the_gossip_project_le_retour">The Gossip Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to "Accueil", root_url, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "La Team", team_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class:"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid text-center">
+  <div class="texte-bienvenue">
+    <h2>Son blaz : <%= @user.first_name %> <%= @user.last_name %></h2>
+    <p><%= @user.age %> ans</p><br />
+    <p>Contactez cette comère : <%= @user.email %>"</p><br />
+    <p> Vous saurez tout sur cette personne : "<%= @user.description %>"</p><br />
+    <p class="text-muted"> Cette petite comère nous vient tout droit de <%= @user.city.name %> !</p>
+  </div>
+</div>

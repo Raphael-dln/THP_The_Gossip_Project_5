@@ -10,7 +10,8 @@ class GossipsController < ApplicationController
   end
 
   def index
-  end
+    puts "Ca c'est la page d'accueil"
+  end 
 
   def edit
   end

@@ -1,2 +1,40 @@
-<h1>Gossips#index</h1>
-<p>Find me in app/views/gossips/index.html.erb</p>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
+    <a class="navbar-brand" href="https://github.com/agnesarth/the_gossip_project_le_retour">The Gossip Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <%= link_to "Accueil", root_url, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "La Team", team_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class:"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="texte-bienvenue text-center">
+    <h1>Le site de Gossip de Dolores Ombrage !</h1>
+  </div>
+  <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around;">
+    <% Gossip.all.each do |gossip| %>
+      <div class="card" style="width: 25rem" >
+        <div class="card-body" style="background-color:#ffc0cb;">
+          <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
+          <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
+            <a href="/gossip/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+ 
