@@ -12,10 +12,10 @@ class GossipsController < ApplicationController
     else
       messages = []
       if @gossip.errors.any? 
-         @gossip.errors.full_messages.each do |message| 
+          @gossip.errors.full_messages.each do |message| 
           messages << message
         end 
-        flash[:error] = "Tu t'es trompé poulet, la liste des erreurs est :#{messages}"
+        flash[:error] = "Tu t'es trompé poulet, la liste des erreurs est :#{messages.join(" ")}"
       end 
       render 'new'
     end
