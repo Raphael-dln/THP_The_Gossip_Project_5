@@ -2,12 +2,21 @@ class GossipsController < ApplicationController
   def new
     @gossip = Gossip.new
   end
-  
+  # possibilité de retoruver l'attribut flash dans application.html.erb
+  # le bootstrap des bannières peut être retrouvé dans helper > application helper
   def create
     @gossip = Gossip.new(title: params[:title], content: params[:content],  user: User.find(params[:user]))
     if @gossip.save
+      flash[:success] = "The super potin was succesfully saved !"
       redirect_to gossips_path
     else
+      messages = []
+      if @gossip.errors.any? 
+         @gossip.errors.full_messages.each do |message| 
+          messages << message
+        end 
+        flash[:error] = "Tu t'es trompé poulet, la liste des erreurs est :#{messages}"
+      end 
       render 'new'
     end
   end
@@ -17,7 +26,7 @@ class GossipsController < ApplicationController
   end
 
   def index
-    puts "Ca c'est la page d'accueil"
+    @gossips = Gossip.all
   end 
 
   def edit
@@ -27,5 +36,7 @@ class GossipsController < ApplicationController
   end
 
   def destroy
+    Gossip.find(params[:id]).delete
+    redirect_to gossips_path
   end
 end
