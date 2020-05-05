@@ -1,2 +1,40 @@
-<h1>Gossips#new</h1>
-<p>Find me in app/views/gossips/new.html.erb</p>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
+    <a class="navbar-brand" href="https://github.com/agnesarth/the_gossip_project_le_retour">The Gossip Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/gossips">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">La Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid">
+  <div class="texte-bienvenue text-center">
+    <h1>Création d'un nouveau gossip !</h1>
+  </div>
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+    <%= label_tag 'Title' %>
+    <%= text_field_tag 'title', @gossip.title %>
+    <br /> <br />
+
+    <%= label_tag 'Content' %>
+    <%= text_area_tag 'content', @gossip.content %>
+    <br /> <br />
+
+    <%= submit_tag "Créer un gossip" %>
+
+  <% end %>
+</div>
