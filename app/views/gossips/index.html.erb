@@ -32,13 +32,17 @@
 </div>
 <div class="container-fluid">
   <h2 class="text-center">Voici ce que Dolorès a appris à coup de véritasérum :</h2><br /><br />
-  <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around;">
+  <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around">
     <% Gossip.all.each do |gossip| %>
       <div class="card" style="width: 25rem" >
         <div class="card-body" style="background-color:#ffc0cb;">
           <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
-          <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
-            <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
+          <div class="row" style= "display: flex; text-align: center; flex-basis: auto; justify-content: space-around; align-items: flex-end">
+            <img class="card-img-left" src = " <%= gossip.user.image %>" />
+            <p class="card-text" >- <%= gossip.user.first_name %></p><br />
+          </div>
+          <br />
+          <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
         </div>
       </div>
     <% end %>

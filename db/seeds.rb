@@ -20,6 +20,7 @@ puts "Les villes ont été créées"
     description: Faker::Hipster.sentence, 
     email: Faker::Internet.email,
     age: rand(16..88),
+    image: Faker::Avatar.image,
     city: City.all.sample
     )
 end

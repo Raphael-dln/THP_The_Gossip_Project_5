@@ -25,6 +25,15 @@
   color: #faf0e6;
 }
 
+.row p{
+  margin-bottom: 0;
+}
+
 .jumbotron h1{
   margin-bottom: 270px;
+}
+
+.card-img-left{
+  height: 120px;
+  width: auto;
 }
