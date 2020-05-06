@@ -42,54 +42,47 @@
    
     <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
     <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
-    
-    <div class="container-fluid text-center">
-      <h2>Commentaires</h2>
-    <!-- Formulaire vers Créer un commentaire (gossip controller > create) -->
-    
-      <%= form_tag url_for(:controller => "comments", :action => "create"), method: 'post' do %>
-      <!-- Input gossip.id caché -->
-      <input id="gossip" name="gossip" type="hidden" value="<%=@gossip.id%>" />
-      
-      <!-- Ajout contenu commentaire -->
-      <%= label_tag 'Laisse ton commentaire' %>
-      <%= text_area_tag 'content', @comment.content, {class: 'form-control'} %>
-      
-      <!-- Sélection du profil -->
-      <%= label_tag 'Confirme ton profil'%>
-        <%= select_tag 'user', options_from_collection_for_select(User.all, :id, :full_name), {class: 'form-control', prompt: 'Choisir un utilisateur'} %>
-      <br /> <br />
-      
-      <!-- Lance la création -->
-      <%= submit_tag "Push moi ça !", {class: "btn btn-success"} %>
-    <% end %>
-  </div>
-
-    <!-- Insertion des commentaires pour chaque gossip (comment controller > show) -->
-      <% Comment.where(gossip_id: @gossip.id).each do |comment| %>
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="well">
-             <p><%= comment.user.first_name %></p>
-             <img src="<%=comment.user.image%>" class="img-circle" height="55" width="55" alt="Avatar">
-            </div>
-          </div>
-          <div class="col-sm-7">
-            <div class="well">
-              <p><%= comment.content %></p>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="well">
-              <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
-            </div>
-          </div>
+  </div>  
+</div>    
+<div class="container-fluid text-center">
+  <h2>Commentaires</h2>
+  <!-- Insertion des commentaires pour chaque gossip (comment controller > show) -->
+  <% Comment.where(gossip_id: @gossip.id).each do |comment| %>
+    <div class="row">
+      <div class="col-sm-1">
+        <div class="well">
+         <p><%= comment.user.first_name %></p>
+         <img src="<%=comment.user.image%>" class="img-circle" height="55" width="55" alt="Avatar">
         </div>
-        <br />
+      </div>
+      <div class="col-sm-7 well">
+        <p><%= comment.content %></p>
+      </div>
+      <div class="col-sm-1">
+        <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+      </div>
+    </div>
+    <br />
+  <% end %>
+</div>
+<div class="container-fluid text-center">
+    <!-- Formulaire vers Créer un commentaire (gossip controller > create) -->
+    <div class = "row">
+      <%= form_tag url_for(:controller => "comments", :action => "create"), method: 'post' do %>
+        <!-- Input gossip.id caché -->
+        <input id="gossip" name="gossip" type="hidden" value="<%=@gossip.id%>"/>
+        <!-- Ajout contenu commentaire -->
+        <%= label_tag 'Laisse ton commentaire' %>
+        <%= text_area_tag 'content', @comment.content, {class: 'form-control'} %>
+        <!-- Sélection du profil -->
+        <%= label_tag 'Confirme ton profil'%>
+        <%= select_tag 'user', options_from_collection_for_select(User.all, :id, :full_name), {class: 'form-control', prompt: 'Choisir un utilisateur'} %>
+        <br /> <br />
+        <!-- Lance la création -->
+        <%= submit_tag "Push moi ça !", {class: "btn btn-success"} %>
       <% end %>
     </div>
-  </div>
 </div>
 
-
+ 
  

@@ -19,8 +19,14 @@
   color: #fd6c9e;
 }
 
-.jumbotron{
+.jumbotron-accueil{
   background-image: url("dolores_ombrage.gif");
+  background-size: cover;
+  color: #faf0e6;
+}
+
+.jumbotron-contact{
+  background-image: url("dolores_ombrage.png");
   background-size: cover;
   color: #faf0e6;
 }
@@ -36,4 +42,33 @@
 .card-img-left{
   height: 120px;
   width: auto;
+}
+
+.well{
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.row{
+  text-align: center;
+  display: flex ;
+  justify-content: center ;
+  align-content: center; 
+}
+
+.col-sm-7 p{
+  padding-bottom: 3%;
+  padding-top: 3%;
+  text-align: left;
+
+}
+
+.col-sm-1 {
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.col-sm-8 {
+  text-align: center;
+  display: flex ;
 }
