@@ -26,6 +26,6 @@
     <p><%= @user.age %> ans</p><br />
     <p>Contactez cette comère : <%= @user.email %>"</p><br />
     <p> Vous saurez tout sur cette personne : "<%= @user.description %>"</p><br />
-    <p class="text-muted"> Cette petite comère nous vient tout droit de <%= @user.city.name %> !</p>
+    <p class="text-muted"> Cette petite comère nous vient tout droit de <a href="/cities/<%= @user.city.id %>"><%= @user.city.name %></a> !</p>
   </div>
 </div>

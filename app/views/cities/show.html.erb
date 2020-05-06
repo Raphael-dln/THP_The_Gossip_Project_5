@@ -6,7 +6,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="/gossips">Accueil</a>
         </li>
         <li class="nav-item">
@@ -20,29 +20,27 @@
   </nav>
 </header>
 
-
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <div class="texte-bienvenue text-center">
-      <h1 class="display-4">Bienvenue sur le site de Gossip de Dolores !</h1>
-      <a href="gossips/new" type="button" class="btn" style="background-color: #faf0e6">Créer un nouveau gossip</a>
-    </div>
+<div class="container-fluid text-center">
+  <div class="texte-bienvenue">
+    <h1>Bienvenue à <%= @city.name %></h1>
+    <h2>Voici les potins de cette ville :</h2>
   </div>
-</div>
-<div class="container-fluid">
-  <h2 class="text-center">Voici ce que Dolorès a appris à coup de véritasérum :</h2><br /><br />
+
+  <!-- Dans la view show de City : afficher tous les potins -->
+  <!-- City est lié à User donc 1ere boucle sur User.all-->
+  <!-- Gossip n'a pas de city_id mais un user_id, donc 2e boucle sur user_id -->
   <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around;">
-    <% Gossip.all.each do |gossip| %>
-      <div class="card" style="width: 25rem" >
-        <div class="card-body" style="background-color:#ffc0cb;">
-          <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
-          <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
-            <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
+    <% User.where(city_id: @city.id).each do |user| %>
+      <% Gossip.where(user_id: user.id).each do |gossip| %>
+        <div class="card" style="width: 25rem" >
+          <div class="card-body" style="background-color:#ffc0cb;">
+            <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
+            <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
+              <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
 
- 

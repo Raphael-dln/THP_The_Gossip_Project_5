@@ -1,2 +1,41 @@
-<h1>Gossips#edit</h1>
-<p>Find me in app/views/gossips/edit.html.erb</p>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
+    <a class="navbar-brand" href="https://github.com/agnesarth/the_gossip_project_le_retour">The Gossip Project</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/gossips">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "La Team", team_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact", contact_path, class:"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid text-center">
+  <div class="texte-bienvenue">
+    <h1>Editer le gossip</h1>
+  </div>
+
+  <%= form_for @gossip do |f| %>
+    <div class="form-group">
+      <label> Titre du potin</label>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label> Contenu du potin</label>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn" style="background-color: #ffc0cb">Modifier le potin</button>
+    </div>
+  <% end %>
+</div>

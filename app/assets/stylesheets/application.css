@@ -14,3 +14,17 @@
 .btn-outline-secondary{
   margin-bottom: 20px;
 }
+
+.texte-bienvenue p a{
+  color: #fd6c9e;
+}
+
+.jumbotron{
+  background-image: url("dolores_ombrage.gif");
+  background-size: cover;
+  color: #faf0e6;
+}
+
+.jumbotron h1{
+  margin-bottom: 270px;
+}

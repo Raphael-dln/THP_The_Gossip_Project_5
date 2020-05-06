@@ -22,10 +22,25 @@
 
 <div class="container-fluid text-center">
   <div class="texte-bienvenue">
-    <h1><a href="/users/<%= @gossip.user.id %>"><%= @gossip.user.first_name%> <%= @gossip.user.last_name %></a> nous raconte son petit potin... </h1>
+    <h1>
+      <!-- Lien vers la page show de users -->
+      <a href="/users/<%= @gossip.user.id %>"><%= @gossip.user.first_name%> <%= @gossip.user.last_name %></a>
+      de 
+      <!-- Lien vers la page show de city -->
+      <a href="/cities/<%= @gossip.user.city.id %>"><%= @gossip.user.city.name %></a> nous raconte son petit potin... 
+     </h1>
+     <!-- Titre & contenu du gossip -->
     <h2><%= @gossip.title %></h2>
     <p><em><font size = +2>"</font><%= @gossip.content %><font size = +2>"</font></em></p>
+
+    <!-- Date de création-->
     <p class="text-muted">Ce potin a été créé le <%= @gossip.created_at.strftime("%d/%m/%Y %H:%M") %>.</p>
     <p class="text-muted">Il a été modifié le <%= @gossip.updated_at.strftime("%d/%m/%Y %H:%M") %>.</p>
+    
+    <!-- Lien vers Editer un gossip (gossip controller > edit) -->
+    <a href="/gossips/<%= @gossip.id %>/edit" class="btn" style="background-color: #ffc0cb">Editer le gossip</a>
+   
+   <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
+    <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
   </div>
 </div>
