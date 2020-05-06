@@ -58,4 +58,11 @@ end
     private.save
 end
 
+25.times do
+  comment = Comment.create(
+    content: Faker::Quote.famous_last_words,
+    user: User.all.sample,
+    gossip: Gossip.all.sample
+  )
+end
 puts "T'es ready pal"

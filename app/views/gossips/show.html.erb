@@ -28,8 +28,8 @@
       de 
       <!-- Lien vers la page show de city -->
       <a href="/cities/<%= @gossip.user.city.id %>"><%= @gossip.user.city.name %></a> nous raconte son petit potin... 
-     </h1>
-     <!-- Titre & contenu du gossip -->
+    </h1>
+    <!-- Titre & contenu du gossip -->
     <h2><%= @gossip.title %></h2>
     <p><em><font size = +2>"</font><%= @gossip.content %><font size = +2>"</font></em></p>
 
@@ -40,7 +40,37 @@
     <!-- Lien vers Editer un gossip (gossip controller > edit) -->
     <a href="/gossips/<%= @gossip.id %>/edit" class="btn" style="background-color: #ffc0cb">Editer le gossip</a>
    
-   <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
+    <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
     <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
+    
+    <div class="container-fluid text-center">
+      <h2>Commentaires</h2>
+    <!-- Formulaire vers Créer un commentaire (gossip controller > create) -->
+    
+      <%= form_tag url_for(:controller => "comments", :action => "create"), method: 'post' do %>
+      <!-- Input gossip.id caché -->
+      <input id="gossip" name="gossip" type="hidden" value="<%=@gossip.id%>" />
+      
+      <!-- Ajout contenu commentaire -->
+      <%= label_tag 'Laisse ton commentaire' %>
+      <%= text_area_tag 'content', @comment.content, {class: 'form-control'} %>
+      
+      <!-- Sélection du profil -->
+      <%= label_tag 'Confirme ton profil'%>
+        <%= select_tag 'user', options_from_collection_for_select(User.all, :id, :full_name), {class: 'form-control', prompt: 'Choisir un utilisateur'} %>
+      <br /> <br />
+      
+      <!-- Lance la création -->
+      <%= submit_tag "Push moi ça !", {class: "btn btn-success"} %>
+    <% end %>
+  </div>
+
+    <!-- Insertion des commentaires pour chaque gossip (comment controller > show) -->
+      <% Comment.where(gossip_id: @gossip.id).each do |comment| %>
+        <p><%= comment.content %>
+        <span class="text-muted"> - <%= comment.user.first_name %></span>
+        <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+      <% end %>
+    </div>
   </div>
 </div>

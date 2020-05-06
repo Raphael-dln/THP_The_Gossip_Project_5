@@ -22,25 +22,19 @@
 
 <div class="container-fluid text-center">
   <div class="texte-bienvenue">
-    <h1>Bienvenue à <%= @city.name %></h1>
-    <h2>Voici les potins de cette ville :</h2>
+    <h1>Editer le commentaire</h1>
   </div>
-
-  <!-- Dans la view show de City : afficher tous les potins -->
-  <!-- City est lié à User donc 1ere boucle sur User.all-->
-  <!-- Gossip n'a pas de city_id mais un user_id, donc 2e boucle sur user_id -->
-  <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around;">
-    <% User.where(city_id: @city.id).each do |user| %>
-      <% Gossip.where(user_id: user.id).each do |gossip| %>
-        <div class="card" style="width: 25rem" >
-          <div class="card-body" style="background-color:#ffc0cb;">
-            <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
-            <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
-            <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <!-- Editer un commentaire ici -->
+  <%= form_for @comment do |f| %>
+    <div class="form-group">
+      <label> Commentaire à modifier </label>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn" style="background-color: #ffc0cb">Modifier le commentaire</button>
+   
+    <!-- Supprimer un commentaire ici -->
+    <a href="/comments/<%= @comment.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le commentaire</a>
+    </div>
+  <% end %>
 </div>
-

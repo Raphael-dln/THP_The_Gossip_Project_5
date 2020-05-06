@@ -24,6 +24,7 @@ class GossipsController < ApplicationController
 
   def show
     @gossip = Gossip.find(params[:id])
+    @comment = Comment.new
   end
 
   def index
@@ -46,8 +47,12 @@ class GossipsController < ApplicationController
 
   def destroy
     @gossip = Gossip.find(params[:id])
-    @gossip.destroy
-    redirect_to gossips_path
+    if @gossip.destroy
+      flash[:success] = "Ton super potin a correctement été détruit !"
+      redirect_to gossips_path
+    else
+      render'destroy'
+    end
   end
 end
 
