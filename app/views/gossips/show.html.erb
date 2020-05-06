@@ -67,10 +67,29 @@
 
     <!-- Insertion des commentaires pour chaque gossip (comment controller > show) -->
       <% Comment.where(gossip_id: @gossip.id).each do |comment| %>
-        <p><%= comment.content %>
-        <span class="text-muted"> - <%= comment.user.first_name %></span>
-        <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="well">
+             <p><%= comment.user.first_name %></p>
+             <img src="<%=comment.user.image%>" class="img-circle" height="55" width="55" alt="Avatar">
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <div class="well">
+              <p><%= comment.content %></p>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="well">
+              <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+            </div>
+          </div>
+        </div>
+        <br />
       <% end %>
     </div>
   </div>
 </div>
+
+
+ 

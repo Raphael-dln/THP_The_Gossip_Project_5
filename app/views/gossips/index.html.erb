@@ -40,7 +40,7 @@
         <div class="card-body" style="background-color:#ffc0cb;">
           <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
           <p class="text-muted text-center">
-          
+          <!-- Affiche le nombre de commentaires par potin -->
           <% if gossip.comments.count > 1 %>
             <%= " #{gossip.comments.count} commentaires" %>
           <% else %>

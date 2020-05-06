@@ -9,7 +9,7 @@ class GossipsController < ApplicationController
     @gossip = Gossip.new(title: params[:title], content: params[:content],  user: User.find(params[:user]))
     if @gossip.save
       flash[:success] = "The super potin was succesfully saved !"
-      redirect_to gossip_path(@gossip.id)
+      redirect_to gossips_path
     else
       messages = []
       if @gossip.errors.any? 
@@ -18,7 +18,7 @@ class GossipsController < ApplicationController
         end 
         flash[:error] = "Tu t'es trompé poulet, la liste des erreurs est :#{messages.join(" ")}"
       end 
-      redirect_to 'new'
+      render 'new'
     end
   end
 
@@ -39,7 +39,7 @@ class GossipsController < ApplicationController
     @gossip = Gossip.find(params[:id])
     if @gossip.update(gossip_params)
       flash[:success] = "Ton super potin a correctement été mis à jour !"
-      redirect_to gossips_path
+      redirect_to gossip_path(@gossip.id)
     else
       render 'edit'
     end
