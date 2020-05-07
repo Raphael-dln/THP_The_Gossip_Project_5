@@ -1,42 +1,3 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffc0cb;">
-    <a class="navbar-brand">The Gossip Project</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-        <a class="nav-link" href="/gossips">Accueil</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to "La Team", team_path, class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Contact", contact_path, class:"nav-link" %>
-        </li>
-      </ul>
-    </div>
-    <div class="nav-item d-flex flex-row-reverse">
-      <ul class="navbar-nav">
-        <% if signed_in? %>
-          <li><%= link_to "Se déconnecter", session_path(session.id), method: :delete %></li>
-        <% else %>
-          <div class="dropdown show">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              S'inscrire / Se connecter
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href=<%= new_user_path %>>S'inscrire</a>
-            <a class="dropdown-item" href=<%= new_session_path %>>Se connecter</a>
-            </div>
-          </div>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
-</header>
-
 <div class="container-fluid text-center">
   <div class="texte-bienvenue">
     <h1>
@@ -54,11 +15,13 @@
     <p class="text-muted">Ce potin a été créé le <%= @gossip.created_at.strftime("%d/%m/%Y %H:%M") %>.</p>
     <p class="text-muted">Il a été modifié le <%= @gossip.updated_at.strftime("%d/%m/%Y %H:%M") %>.</p>
     
-    <!-- Lien vers Editer un gossip (gossip controller > edit) -->
-    <a href="/gossips/<%= @gossip.id %>/edit" class="btn" style="background-color: #ffc0cb">Editer le gossip</a>
-   
-    <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
-    <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
+    <% if current_user?(@gossip.user) %>
+      <!-- Lien vers Editer un gossip (gossip controller > edit) -->
+      <a href="/gossips/<%= @gossip.id %>/edit" class="btn" style="background-color: #ffc0cb">Editer le gossip</a>
+    
+      <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
+      <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
+    <% end %>
   </div>  
 </div>    
 <div class="container-fluid text-center">
@@ -76,7 +39,9 @@
         <p><%= comment.content %></p>
       </div>
       <div class="col-sm-1">
-        <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+        <% if current_user?(comment.user) %>
+          <a href="/comments/ <%=comment.id%> /edit" class="btn" style="background-color: #ffc0cb">Editer</a></p>
+        <%end%>
       </div>
     </div>
     <br />
@@ -91,10 +56,6 @@
         <!-- Ajout contenu commentaire -->
         <%= label_tag 'Laisse ton commentaire' %>
         <%= text_area_tag 'content', @comment.content, {class: 'form-control'} %>
-        <!-- Sélection du profil -->
-        <%= label_tag 'Confirme ton profil'%>
-        <%= select_tag 'user', options_from_collection_for_select(User.all, :id, :full_name), {class: 'form-control', prompt: 'Choisir un utilisateur'} %>
-        <br /> <br />
         <!-- Lance la création -->
         <%= submit_tag "Push moi ça !", {class: "btn btn-success"} %>
       <% end %>
