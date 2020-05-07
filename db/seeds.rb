@@ -21,7 +21,8 @@ puts "Les villes ont été créées"
     email: Faker::Internet.email,
     age: rand(16..88),
     image: Faker::Avatar.image,
-    city: City.all.sample
+    city: City.all.sample,
+    password: "bonjour"
     )
 end
 puts "Les users ont été créées"

@@ -4,11 +4,13 @@ class User < ApplicationRecord
   has_many :sent_messages, foreign_key: 'sender_id', class_name: "PrivateMessage"
   has_many :received_messages, foreign_key: 'recipient_id', class_name: "PrivateMessage"
   has_many :comments
-  validates :first_name,
+  has_secure_password
+  validates :password_digest,
     presence: true,
+    length: {minimum: 6}
+  validates :first_name,
     length: { minimum: 2 }
   validates :last_name,
-    presence: true,
     length: { minimum: 2 }
   validates :email,
     presence: true,
