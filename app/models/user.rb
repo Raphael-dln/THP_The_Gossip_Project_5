@@ -5,9 +5,11 @@ class User < ApplicationRecord
   has_many :received_messages, foreign_key: 'recipient_id', class_name: "PrivateMessage"
   has_many :comments
   has_secure_password
-  validates :password_digest,
+  validates :password,
     presence: true,
     length: {minimum: 6}
+#  validates :password_confirmation,
+#    presence: true
   validates :first_name,
     length: { minimum: 2 }
   validates :last_name,
