@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(first_name: user_params[:first_name],last_name: user_params[:last_name], city: City.find(params[:city]), email: user_params[:email], password: user_params[:password])
     puts params
     if @user.save
+      log_in(@user)
       flash[:success] = "Ton profil a bien été créé ! "
       redirect_to gossips_path
     else
