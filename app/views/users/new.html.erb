@@ -9,7 +9,7 @@
       <%= f.text_field :last_name, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= label_tag 'Ta ville'%>
+      <%= label_tag "Ta ville"%>
       <%= select_tag "city", options_from_collection_for_select(City.all, :id, :name), {class: 'form-control', prompt: 'Choisir une ville'} %>
     </div>
     <div class="form-group">
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
       <label> Mot de passe</label>
-      <%= f.text_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control' %>
     </div>
     <div class="form-group">
     <button type="submit" class="btn" style="background-color: #ffc0cb">Créer son profil</button>

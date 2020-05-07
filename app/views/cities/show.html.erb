@@ -6,7 +6,8 @@
 
   <!-- Dans la view show de City : afficher tous les potins -->
   <!-- City est lié à User donc 1ere boucle sur User.all-->
-  <!-- Gossip n'a pas de city_id mais un user_id, donc 2e boucle sur user_id -->
+  <!-- "Gossip n'a pas de city_id mais un user_id, donc 2e boucle sur user_id" -->
+
   <div class="row" style= "display: flex; flex-flow: row wrap; justify-content: space-around;">
     <% User.where(city_id: @city.id).each do |user| %>
       <% Gossip.where(user_id: user.id).each do |gossip| %>
@@ -14,6 +15,19 @@
           <div class="card-body" style="background-color:#ffc0cb;">
             <h5 class="card-title text-center" ><%= gossip.title %><br /></h5>
             <p class="card-text text-center">- <%= gossip.user.first_name %></p><br />
+            <div class = "row">
+            <!-- Bouton like  -->
+              <%= form_tag url_for(:controller => "likes", :action => "create"), method: 'post' do %>
+                <!-- Input gossip.id caché -->
+                <input id="gossip" name="gossip" type="hidden" value="<%=gossip.id%>"/>
+                <!-- Input value caché -->
+                <input id="value" name="value" type="hidden" value="0"/>
+                <!-- Lance le like -->
+                <button type="submit" class="btn btn-danger btn-like">
+                  <i class= "fas fa-thumbs-up"></i> 
+                </button>
+              <%end%>
+            </div>
             <a href="/gossips/<%= gossip.id %>" class="btn btn-block" style="background-color: #ffffff">Gossiiiiiiip ici</a>
           </div>
         </div>
@@ -21,4 +35,5 @@
     <% end %>
   </div>
 </div>
+
 

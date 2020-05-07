@@ -9,6 +9,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <!-- Fontawesome incons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"></link>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>The Fucking Gossip Project</title>
@@ -23,7 +26,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav nav-left">
         <li class="nav-item">
         <a class="nav-link" href="/gossips">Accueil</a>
         </li>
@@ -40,7 +43,7 @@
         </li>
 
       </ul>
-    </div>
+    
       <div class="nav-item d-flex flex-row-reverse">
         <ul class="navbar-nav">
           <% if signed_in? %>
@@ -58,6 +61,7 @@
           <% end %>
         </ul>
       </div>
+    </div>
   </nav>
 </header>
 

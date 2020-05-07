@@ -22,6 +22,22 @@
       <!-- Lien vers Supprimer un gossip (gossip controller > destroy) -->
       <a href="/gossips/<%= @gossip.id %>" class="btn btn-danger" data-confirm="T'es sûr(e) de vouloir supprimer ça ?" data-method="DELETE">Supprimer le gossip</a>
     <% end %>
+    <br />
+    <div class = "col sm-1 mt-3">
+    
+      <!-- Bouton like  -->
+      <%= form_tag url_for(:controller => "likes", :action => "create"), method: 'post' do %>
+        <!-- Input gossip.id caché -->
+        <input id="gossip" name="gossip" type="hidden" value="<%=@gossip.id%>"/>
+        <!-- Input value caché -->
+        <input id="value" name="value" type="hidden" value="0"/>
+        <!-- Lance le like -->
+        <button type="submit" class="btn btn-danger btn-like">
+          <i class= "fas fa-thumbs-up"></i> 
+        </button>
+      <%end%>
+    </div>
+    </div>
   </div>  
 </div>    
 <div class="container-fluid text-center">

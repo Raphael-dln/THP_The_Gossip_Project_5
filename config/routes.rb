@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :cities, only: [:show]
   resources :comments
   resources :sessions, only: [:new, :create, :destroy]
+  resources :likes, only: [:create, :destroy]
   
   
   # menu (static pages)

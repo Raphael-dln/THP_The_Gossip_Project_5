@@ -72,3 +72,13 @@
   text-align: center;
   display: flex ;
 }
+
+.btn-like {
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.nav-left {
+  margin-right: auto;
+}
